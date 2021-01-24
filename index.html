@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function init() {
+            var cn = new WebSocket('ws://localhost:775');
+            cn.onopen = () => {
+
+            }
+
+            cn.onmessage = (e) => {
+                var payload = JSON.parse(e.data);
+
+                if (payload.type == 'ommi.connected') {
+                    cn.send(JSON.stringify({
+                        type: 'omni.listen',
+                        group: 'gyn2'
+                    }));
+
+                    return;
+                }
+
+                if (payload.type == 'omni.event') {
+                    console.log(payload.data);
+                    return;
+                }
+
+            }
+
+            document.getElementById('send').addEventListener('click', () => {
+                cn.send(JSON.stringify({
+                    type: 'omni.trigger',
+                    group: 'gyn2',
+                    data: {
+                        nome: 'manoel',
+                        sobrenome: 'neco'
+                    }
+                }));
+            });
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <button id="send">Send</button>
+</body>
+
+</html>
