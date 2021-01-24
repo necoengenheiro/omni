@@ -135,6 +135,7 @@ wss.on('connection', function (client) {
         } else if (message.type == 'omni.trigger') {
             sendToGroup(groups[message.group], {
                 type: 'omni.event',
+                event: message.event,
                 data: message.data
             }, client);
         }
