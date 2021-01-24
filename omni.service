@@ -3,7 +3,7 @@ Description = Omni WebSocket 1.0
 After=network.target remote-fs.target nss-lookup.target
 
 [Service]
-ExecStart = node /home/projects/omni/app.js
+ExecStart = /root/.nvm/versions/node/v15.6.0/bin/node /home/projects/omni/app.js
 Restart=always
 RestartSec=2
 
