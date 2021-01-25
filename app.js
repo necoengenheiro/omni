@@ -1,6 +1,5 @@
 const AppName = 'Omni WebSocket 1.0.0 =';
 const WebSocketServer = require('ws').Server;
-const Http = require('http');
 const File = require('fs');
 const Url = require('url');
 const Pi = require('./pillar.js');
@@ -12,19 +11,17 @@ var clientIncrement = 1;
 var groups = [];
 var httpParams = {};
 
+var Http = require('http');
 /**
  * 
  * SSL CONNECTION
-const Http = require('https');
-const pkey = File.readFileSync('/etc/letsencrypt/live/test.galileu.space/privkey.pem');
-const pcert = File.readFileSync('/etc/letsencrypt/live/test.galileu.space/fullchain.pem');
+ * */
+const pkey = File.readFileSync('/etc/letsencrypt/live/omni.ministerioatos239.com.br/privkey.pem');
+const pcert = File.readFileSync('/etc/letsencrypt/live/omni.ministerioatos239.com.br/fullchain.pem');
 
-const wss = new WebSocketServer({
-    server: Http.createServer({ key: pkey, cert: pcert }).listen(wssPort)
-});
-
+Http = require('https');
 httpParams = { key: pkey, cert: pcert };
-*/
+/**/
 
 const wss = new WebSocketServer({
     server: Http.createServer(httpParams).listen(wssPort)
